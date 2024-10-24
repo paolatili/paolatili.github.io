@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #b2dbed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+sup {
+    font-size: small;
+    vertical-align: super
+}
+
+.calculator {
+    width: 80%;
+    max-width: 800px;
+    min-width: 200px;
+    padding: 2rem;
+    border-radius: 2rem;
+    background: #F7F8FB;
+    backdrop-filter: blur(50px);
+    box-shadow: 5vw 5vw 4vw rgba(0, 162, 255, 0.463);
+}
+
+.calculator .darkMode {
+    position: absolute;
+    width: 35px;
+    padding: 8px;
+    margin-top: 30px;
+    top: 0;
+    background: none;
+    border: 1px solid rgb(163, 78, 3);;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.darkActive .calculator {
+    background: linear-gradient(191deg, #1e232e -4.95%, #17181A 103.74%);
+}
+
+.calculator .darkMode.light {
+    color: rgb(163, 78, 3);
+}
+
+.calculator .darkMode.dark {
+    border-color: #0e60ad;
+}
+
+.calculator .darkMode .light {
+    color: rgb(163, 78, 3);
+}
+
+.calculator .darkMode .dark {
+    color: #2486e3;
+}
+
+.calculator .display {
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.calculator .keyboard {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(40px, 1fr)); /* Ensures a minimum size for buttons */
+    gap: 0.5rem; /* Spacing between buttons */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.calculator .keyboard .keyboard-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.calculator .keyboard .button {
+    border-radius: 0.5rem;
+    color: #109DFF;
+    background: #def3ff;
+    height: 11vw;
+    font-size: 4vw; /* Font size that scales with viewport width */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -moz-transition: all ease 0.5s;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -o-transition: all ease 0.5s;
+}
+
+.calculator .display .operation {
+    max-width: 100%;
+    min-height: 2rem;
+    max-height: 10%;
+    text-align: right;
+    color: #818181;
+    font-size: 2rem;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.calculator .keyboard .button.bigger {
+    grid-column: span 2; /* Ensure "0" button still spans two columns */
+}
+
+.calculator .keyboard .bracket-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns for the brackets */
+    gap: 5px; /* Space between the brackets */
+}
+
+.calculator .keyboard .button.small {
+    height: 10vw;
+    max-height: 60px;
+    font-size: 2vw;
+    font-weight: 400;
+}
+
+
+.calculator .display .operation .sign {
+    color: #109DFF;
+}
+
+.calculator .display .operation::-webkit-scrollbar {
+    height: 4px;
+}
+
+.calculator .display .operation::-webkit-scrollbar-thumb {
+    background-color: #ADE2FF;
+    border-radius: 6px;
+}
+
+.calculator .display .result {
+    width: 100%;
+    text-align: right;
+    font-size: 2rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: rgba(218,240,255, 0.7);
+}
+
+.calculator .display .result::-webkit-scrollbar {
+    height: 6px;
+}
+
+.calculator .display .result::-webkit-scrollbar-thumb {
+    background-color: #1BACFF;
+    border-radius: 6px;
+}
+
+body.darkActive .display .result {
+    color: #FFF;
+}
+
+body.darkActive .calculator .keyboard .button {
+    background: #303136;
+    color: #1BACFF;
+    border: none;
+}
+
+.calculator .keyboard .button.operator {
+    border-radius: 1rem;
+    background: #ADE2FF;
+    color: #109DFF
+}
+
+body.darkActive .calculator .keyboard .button.clean {
+    background: #973d3d96;
+    color: #A5A5A5;
+}
+
+.calculator .keyboard .button.clean {
+    background: #ffa8a8e0;
+    color: #7829298a;
+}
+
+body.darkActive .calculator .keyboard .operator {
+    background: #005DB2;
+}
+
+
+.calculator .keyboard .button.operator.equal {
+    background: #19ACFF;
+    border: none;
+    color: #B2DAFF;
+}
+
+.hidden {
+    display: none;
+}
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+#anglePlane {
+    color: #7c7c00;
+    background: rgba(255, 246, 187, 0.87);
+}
+
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+.ripple:before {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.53);
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+}
+
+.ripple:not(:active):before {
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    width: 160px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: -80px;
+}
+
+@media (max-width: 768px) {
+    .calculator .keyboard .button {
+        height: 3.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 800px) {
+    .calculator .keyboard .button {
+        height: 5rem;
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 410px) {
+    .calculator .keyboard {
+        grid-template-columns: repeat(4, minmax(35px, 1fr)); /* Further reduce min width for very small screens */
+        gap: 0.2rem; /* Smaller gap between buttons */
+    }
+
+    .calculator .keyboard .button {
+        height: 16vw; /* Taller buttons for small screens */
+        font-size: 5vw; /* Larger font size for better readability */
+    }
+
+    .calculator .keyboard .button.bigger {
+        grid-column: span 2; /* Ensure "0" button still spans two columns */
+    }
+}
+
+.alert {
+    background-color: #f44336;
+    color: white; /* Red background */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    opacity: 1;
+    position: fixed; /* Fixed position (or absolute if you want it relative to a parent) */
+    top: 20px; /* Distance from the top of the screen */
+    right: 20px; /* Distance from the right of the screen */
+    width: 350px; /* Width of the alert box */
+    z-index: 1000; /* Ensure it's above other elements */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in/out */
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
