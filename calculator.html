@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="alert hidden">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    Invalid input. <span class="alert-text"></span>
+</div>
+<div class="calculator">
+    <!-- Dark Mode Toggle Button -->
+    <button class="darkMode light"
+            onclick="changeTheme()">
+        <!-- Light Mode Icon -->
+        <img src="icons/sun.svg" alt="icon" class="w-6 h-6 light"/>
+        <!-- Dark Mode Icon (Initially Hidden) -->
+        <img src="icons/moon.svg" alt="icon" class="w-6 h-6 dark hidden"/>
+    </button>
+
+    <!-- Calculator display -->
+    <div class="display">
+        <p class="operation" id="operation">0</p>
+        <h1 class="result"><span id="value">0</span></h1>
+    </div>
+
+    <!-- Calculator keyboard -->
+    <div class="keyboard">
+        <!-- Button to change trig calculations from rad to deg and vice versa -->
+        <button class="button operator small" id="anglePlane" onclick="calculateInDegree()">
+            <span id="rad" style="opacity: 1; margin-right: 3px; font-weight: 600"> RAD </span>
+            | <span id="deg" style="opacity: 0.3; margin-left: 3px"> DEG </span>
+        </button>
+        <button class="button operator small ripple" onclick="calculateSquarePower()">x<sup>2</sup></button>
+        <button class="button operator small ripple" onclick="calculatePercentage()">%</button>
+        <button class="button operator small ripple" onclick="advancedOperations('sqrt')">&#8730;</button>
+
+        <button class="button operator small ripple" onclick="calculateTrigExpression('sin')">sin</button>
+        <button class="button operator small ripple" onclick="calculateTrigExpression('cos')">cos</button>
+        <button class="button operator small ripple" onclick="calculateTrigExpression('tan')">tan</button>
+        <button class="button operator small ripple" onclick="advancedOperations('log10')">log<sub>10</sub></button>
+
+        <button class="button clean" onclick="eraseAll()">Ac</button>
+        <button class="button clean" onclick="eraseLastCharacter()">C</button>
+        <div class="bracket-buttons">
+            <button class="button operator ripple" onclick="addBracket('(')">(</button>
+            <button class="button operator ripple" onclick="addBracket(')')">)</button>
+        </div>
+        <button class="button operator ripple" onclick="inputCharacter('/')">/</button>
+
+
+        <button class="button" onclick="inputCharacter('7')">7</button>
+        <button class="button" onclick="inputCharacter('8')">8</button>
+        <button class="button" onclick="inputCharacter('9')">9</button>
+        <button class="button operator ripple" onclick="inputCharacter('*')">*</button>
+
+
+        <button class="button" onclick="inputCharacter('4')">4</button>
+        <button class="button" onclick="inputCharacter('5')">5</button>
+        <button class="button" onclick="inputCharacter('6')">6</button>
+        <button class="button operator ripple" onclick="inputCharacter('-')">-</button>
+
+
+        <button class="button" onclick="inputCharacter('1')">1</button>
+        <button class="button" onclick="inputCharacter('2')">2</button>
+        <button class="button" onclick="inputCharacter('3')">3</button>
+        <button class="button operator ripple" onclick="inputCharacter('+')">+</button>
+
+
+        <button class="button bigger" onclick="inputCharacter('0')">0</button>
+        <button class="button" onclick="inputCharacter('.')">.</button>
+        <button class="button operator equal ripple" onclick="calcResult()">=</button>
+
+    </div>
+</div>
+<script src="helpers/utils.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
