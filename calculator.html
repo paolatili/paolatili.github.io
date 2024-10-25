@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <div class="alert hidden">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     Invalid input. <span class="alert-text"></span>
 </div>
 <div class="calculator">
@@ -36,12 +35,12 @@
         </button>
         <button class="button operator small ripple" onclick="calculateSquarePower()">x<sup>2</sup></button>
         <button class="button operator small ripple" onclick="calculatePercentage()">%</button>
-        <button class="button operator small ripple" onclick="advancedOperations('sqrt')">&#8730;</button>
+        <button class="button operator small ripple" onclick="advancedOperations('sqrt', 'Square Root')">&#8730;</button>
 
         <button class="button operator small ripple" onclick="calculateTrigExpression('sin')">sin</button>
         <button class="button operator small ripple" onclick="calculateTrigExpression('cos')">cos</button>
         <button class="button operator small ripple" onclick="calculateTrigExpression('tan')">tan</button>
-        <button class="button operator small ripple" onclick="advancedOperations('log10')">log<sub>10</sub></button>
+        <button class="button operator small ripple" onclick="advancedOperations('log10', 'Logarithm')">log<sub>10</sub></button>
 
         <button class="button clean" onclick="eraseAll()">Ac</button>
         <button class="button clean" onclick="eraseLastCharacter()">C</button>
@@ -76,7 +75,7 @@
 
     </div>
 </div>
-<script src="helpers/utils.js"></script>
-<script src="script.js"></script>
+<script src="scripts/helpers/utils.js"></script>
+<script src="scripts/calculator.js"></script>
 </body>
 </html>

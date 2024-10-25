@@ -11,8 +11,22 @@ function isOperator(character) {
     return operators.includes(character)
 }
 
+function isOperatorAllowed(character, lastCharacterAdded, equalIsClicked, displayedText) {
+    return displayedText.length > 0 && (isNumber(lastCharacterAdded) || isClosingBracket(lastCharacterAdded))
+        || isOpenBracket(lastCharacterAdded) && character === '-'
+        || equalIsClicked && isOperator(character)
+}
+
+function isOperationAllowed(lastCharacterAdded) {
+    return !isOperator(lastCharacterAdded) && !equalIsClicked
+}
+
 function isPoint(character) {
     return character === '.'
+}
+
+function isPointAllowed(displayedTextLength, lastCharacterAdded) {
+    return displayedTextLength > 0 && isNumber(lastCharacterAdded)
 }
 
 function isClosingBracket(character) {
@@ -32,13 +46,38 @@ function checkIfLastIsOperator(value) {
     return operators.includes(lastChar)
 }
 
+function findLastCharacter(value) {
+    if (value.endsWith('</span>')) {
+        //check if the last element after erasing is operator or bracket
+        value = removeSpanTags(value, true);
+        return value[value.length - 1];
+    } else return value[value.length - 1]; //in this case it's number or '.'
+
+}
+
+function appendValue(result) {
+    if (!Number.isInteger(result)) addedPointToNumber = 1
+
+    if (result >= 0) inputCharacter(result.toString())
+
+    else if (result < 0) {
+        inputCharacter('(')
+        inputCharacter(result.toString())
+        inputCharacter(')')
+    }
+}
+
 function getAllNumbersAdded(displayedText) {
-    return removeSpanTags(displayedText).split(/[-+*/=()]/);
+    return removeSpanTags(displayedText).split(/[+*/=()]/);
 }
 
 function getLastNumberAdded(displayedText) {
     let numbersArray = getAllNumbersAdded(displayedText);
-    return numbersArray[numbersArray.length - 1];
+    const result = numbersArray.flatMap(item => {
+        return item.match(/^-?\d+-\d+$/) ? item.match(/-?\d+/g) || [] : [item]
+    })
+    //  return numbersArray[numbersArray.length - 1];
+    return result[result.length - 1]
 }
 
 function isNumberAllowed(lastCharacterAdded) {
@@ -115,4 +154,11 @@ function getDarkModePreferences() {
 function switchSavedModePreference() {
     const darkModeSavedPreferences = JSON.parse(window.localStorage.getItem('darkMode') ?? 'true');
     window.localStorage.setItem('darkMode', JSON.stringify({value: !darkModeSavedPreferences.value}));
+}
+
+function addEffectToDisplay(resultDisplay) {
+    resultDisplay.classList.add('fade-text')
+    setTimeout(() => {
+        resultDisplay.classList.remove('fade-text');
+    }, 30);
 }
