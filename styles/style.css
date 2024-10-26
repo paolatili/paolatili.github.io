@@ -283,30 +283,11 @@ sub {
     margin-bottom: 20px;
     border-radius: 5px;
     opacity: 1;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 350px;
-    z-index: 1000;
-    transition: opacity 0.3s ease-in-out;
+    position: fixed; /* Fixed position (or absolute if you want it relative to a parent) */
+    top: 20px; /* Distance from the top of the screen */
+    right: 20px; /* Distance from the right of the screen */
+    width: 350px; /* Width of the alert box */
+    z-index: 1000; /* Ensure it's above other elements */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in/out */
 }
 
-@keyframes fade {
-    0% {
-        opacity: 1;
-        transform: translateY(0); /* Starting position */
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateY(-5px); /* Move up a bit */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* Back to original position */
-    }
-}
-
-.fade-text {
-    animation: fade 0.8s ease-in-out;
-    color: rgba(162, 197, 255, 0.62)
-}
